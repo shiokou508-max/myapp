@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOEFL Vocabulary Mastery</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts for premium feel -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="background-orbs">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <div id="quiz-view" class="glass-container hidden">
+        <header>
+            <div style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+                <h1>TOEFL Vocabulary Quiz</h1>
+                <button id="quit-header-btn" title="Back to Home"
+                    style="background:none; border:none; color:white; cursor:pointer;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                    </svg>
+                </button>
+            </div>
+            <div class="progress-container" id="progress-container" style="display: none;">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+            <div class="score-board">
+                <span id="question-counter">Question: 1 / 10</span>
+                <span>Score: <span id="score">0</span></span>
+            </div>
+        </header>
+
+        <main id="quiz-area">
+            <div class="word-card">
+                <h2 id="question-word" class="fade-in">Loading...</h2>
+                <div class="memory-meter" id="memory-meter" title="Memory Level"></div>
+                <div class="audio-hint" id="audio-hint" title="Listen (TTS)">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M11 5L6 9H2v6h4l5 4V5z"></path>
+                        <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                    </svg>
+                </div>
+            </div>
+
+            <div class="options-container" id="options-container">
+                <!-- Options injected here -->
+            </div>
+        </main>
+
+        <footer id="feedback-area" class="hidden">
+            <div id="feedback-text"></div>
+            <button id="next-btn">Next Word</button>
+        </footer>
+    </div>
+
+    <!-- Home View (Course Selection) -->
+    <div id="home-view" class="glass-container"
+        style="width: 90%; max-width: 600px; padding: 20px 20px 40px; margin-bottom: 80px;">
+        <h2>Select a Course</h2>
+        <div class="course-grid">
+            <div class="course-card" data-rank="1">
+                <div class="course-icon">1</div>
+                <div class="course-info">
+                    <h3>Rank 1</h3>
+                    <p>Basic Vocabulary</p>
+                </div>
+                <div class="course-actions">
+                    <button class="icon-btn list-btn" data-rank="1" title="View Word List">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="8" y1="6" x2="21" y2="6"></line>
+                            <line x1="8" y1="12" x2="21" y2="12"></line>
+                            <line x1="8" y1="18" x2="21" y2="18"></line>
+                            <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                            <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                            <line x1="3" y1="18" x2="3.01" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="course-card" data-rank="2">
+                <div class="course-icon">2</div>
+                <div class="course-info">
+                    <h3>Rank 2</h3>
+                    <p>Intermediate Vocabulary</p>
+                </div>
+                <div class="course-actions">
+                    <button class="icon-btn list-btn" data-rank="2" title="View Word List">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="8" y1="6" x2="21" y2="6"></line>
+                            <line x1="8" y1="12" x2="21" y2="12"></line>
+                            <line x1="8" y1="18" x2="21" y2="18"></line>
+                            <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                            <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                            <line x1="3" y1="18" x2="3.01" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="course-card" data-rank="3">
+                <div class="course-icon">3</div>
+                <div class="course-info">
+                    <h3>Rank 3</h3>
+                    <p>Advanced Vocabulary</p>
+                </div>
+                <div class="course-actions">
+                    <button class="icon-btn list-btn" data-rank="3" title="View Word List">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="8" y1="6" x2="21" y2="6"></line>
+                            <line x1="8" y1="12" x2="21" y2="12"></line>
+                            <line x1="8" y1="18" x2="21" y2="18"></line>
+                            <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                            <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                            <line x1="3" y1="18" x2="3.01" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="course-card" data-rank="4">
+                <div class="course-icon">4</div>
+                <div class="course-info">
+                    <h3>Rank 4</h3>
+                    <p>Expert Vocabulary</p>
+                </div>
+                <div class="course-actions">
+                    <button class="icon-btn list-btn" data-rank="4" title="View Word List">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="8" y1="6" x2="21" y2="6"></line>
+                            <line x1="8" y1="12" x2="21" y2="12"></line>
+                            <line x1="8" y1="18" x2="21" y2="18"></line>
+                            <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                            <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                            <line x1="3" y1="18" x2="3.01" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="course-card" data-rank="all">
+                <div class="course-icon">All</div>
+                <div class="course-info">
+                    <h3>All Ranks</h3>
+                    <p>Review Everything</p>
+                </div>
+                <div class="course-actions">
+                    <button class="icon-btn list-btn" data-rank="all" title="View Word List">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="8" y1="6" x2="21" y2="6"></line>
+                            <line x1="8" y1="12" x2="21" y2="12"></line>
+                            <line x1="8" y1="18" x2="21" y2="18"></line>
+                            <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                            <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                            <line x1="3" y1="18" x2="3.01" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Word List View -->
+    <div id="word-list-view" class="glass-container flex-column hidden"
+        style="width: 90%; max-width: 600px; padding: 20px; max-height: 80vh; overflow-y: hidden;">
+        <header style="display:flex; justify-content:space-between; align-items:center; margin-bottom:15px;">
+            <h2 id="word-list-title" style="margin:0; font-size:1.5rem;">Word List</h2>
+            <button id="close-list-btn" title="Close"
+                style="background:none; border:none; color:white; cursor:pointer;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+        </header>
+        <div id="word-list-container" style="flex-grow:1; overflow-y:auto; padding-right:5px;">
+            <!-- Words injected here -->
+        </div>
+    </div>
+
+    <!-- Stats Dashboard View -->
+    <div id="stats-view" class="glass-container hidden" style="width: 90%; max-width: 600px; padding: 30px;">
+        <h2>Memory Progress</h2>
+        <div id="stats-container" style="display: flex; flex-direction: column; gap: 15px; margin-top: 20px;">
+            <!-- Stats injected here -->
+        </div>
+    </div>
+
+    <!-- History View (reusing Modal content style but as a view) -->
+    <div id="history-view" class="glass-container hidden"
+        style="width: 90%; max-width: 600px; padding: 30px; max-height: 80vh; overflow-y: auto;">
+        <h2>Study History</h2>
+        <div class="history-list" id="history-list-view">
+            <!-- History items injected here -->
+        </div>
+        <button id="clear-history-btn-view" class="rank-btn"
+            style="margin-top: 20px; background: rgba(248, 113, 113, 0.2); border-color: var(--error-color);">Clear
+            History</button>
+        <button id="export-history-btn-view" class="rank-btn" style="margin-top: 10px;">Export CSV</button>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <button class="nav-btn" data-view="history">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 3v5h5" />
+                <path d="M3.05 13A9 9 0 1 0 6 5.3L3 8" />
+            </svg>
+            <span>履歴</span>
+        </button>
+        <button class="nav-btn active" data-view="quiz">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+            </svg>
+            <span>覚える</span>
+        </button>
+        <button class="nav-btn" data-view="stats">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 20V10" />
+                <path d="M18 20V4" />
+                <path d="M6 20v-4" />
+            </svg>
+            <span>記憶度</span>
+        </button>
+    </nav>
+
+    <!-- Quit Confirmation Modal -->
+    <div id="quit-modal" class="modal">
+        <div class="modal-content glass-container"
+            style="min-height: auto; width: 90%; max-width: 400px; padding: 30px;">
+            <h2 style="margin-top:0; color:var(--error-color);">Quit Session?</h2>
+            <p>Your progress for this session will be lost.</p>
+            <div class="action-buttons">
+                <button id="cancel-quit-btn" class="secondary-btn"
+                    style="background: rgba(255,255,255,0.1);">Cancel</button>
+                <button id="confirm-quit-btn" class="danger-btn">Quit</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="vocab.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
